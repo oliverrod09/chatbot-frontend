@@ -10,6 +10,7 @@ import {
   IconButton,
   Select,
   Option,
+  Spinner,
 } from "@material-tailwind/react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import Footer from "../components/Footer";
@@ -27,6 +28,12 @@ function ListChat() {
   const [idChat, setIdChat] = useState(null);
   const [normas, setNormas] = useState([]);
 
+  //usestate error
+  const [promptError, setPromptError] = useState("")
+  const [isoError, setIsoError] = useState("")
+
+  //usestate load
+  const [load, setLoad] = useState("hidden")
 
 
   const [open, setOpen] = useState(false);
@@ -49,37 +56,55 @@ function ListChat() {
   const onsubmit = async (e) => {
     e.preventDefault();
     console.log(sessionStorage.getItem("token"));
-    try {
-      const url = "http://localhost:3000/chatgpt/";
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + sessionStorage.getItem("token"),
-        },
-      };
-      const response = await axios.post(url, chatData, config);
-      if (response.status == 200) {
-        getChats(selectedChat._id);
-        setMessage([...message, response.data]);
-        console.log(response.data + "AQUI ESTA LA RESPUESTA");
-        //   setRedirect(true)
-      } else {
-        console.log(response.status);
+
+
+    if (!chatData.prompt) {
+      setPromptError("border-red-500"); // Establecer el estado para el error de prompt
+    }
+    if (!chatData.iso) {
+      setIsoError("border-red-500"); // Establecer el estado para el error de iso
+    }
+  
+    // Verificar si todos los campos en chatData no están vacíos
+    if (chatData.prompt && chatData.id_chat && chatData.iso) {
+      try {
+        setPromptError("")
+        setIsoError("")
+        setLoad("")
+        const url = "http://localhost:3000/chatgpt/";
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+          },
+        };
+        const response = await axios.post(url, chatData, config);
+        setChatData({ ...chatData, prompt: "" });
+        setLoad("hidden")
+        if (response.status == 200) {
+          getChats(selectedChat._id);
+          setMessage([...message, response.data]);
+          console.log(response.data + "AQUI ESTA LA RESPUESTA");
+        } else {
+          console.log(response.status);
+        }
+      } catch (error) {
+        if (error.response.status == 400) {
+          console.log(error);
+        } else {
+          console.log(error.response);
+        }
       }
-    } catch (error) {
-      if (error.response.status == 400) {
-        console.log(error);
-      } else {
-        console.log(error.response);
-      }
+    } else {
+      console.log("Por favor, complete todos los campos");
     }
   };
 
   //acaba formulario reg
 
-  useEffect(() => {
-    console.log(chatData);
-  }, [chatData]);
+   useEffect(() => {
+     console.log(chatData);
+   }, [chatData]);
 
   useEffect(() => {
     getChats();
@@ -140,7 +165,7 @@ function ListChat() {
     <>
       <section className="w-full flex">
         <Card className="hidden lg:block overflow-hidden lg:overflow-y-scroll lg:w-1/5">
-          <List>
+          <List className="w-full min-w-0">
             {list.map((item, key) => (
               <ListItem
                 ripple={false}
@@ -207,9 +232,9 @@ function ListChat() {
                     name="iso"
                     value={chatData.iso}
                     onChange={onchange}
-                    className=" border-2 my-4 py-2 px-4 rounded-md"
+                    className={`border-2 my-4 py-2 px-4 rounded-md ${isoError}`}
                   >
-                    <option className="">Escoge una ISO</option>
+                    <option className="" value={""}>Escoge una ISO</option>
                     {normas.map((item, key) => (
                       <option key={key} value={item.iso}>
                         {item.iso}
@@ -223,7 +248,7 @@ function ListChat() {
                         key={key}
                       >
                         <div>
-                          <div className="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+                          <div className="bg-blue-gray-300 text-white p-3 rounded-l-lg rounded-br-lg">
                             <p
                               className="text-sm"
                               style={{ whiteSpace: "pre-line" }}
@@ -238,16 +263,18 @@ function ListChat() {
                         <div className="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
                       </div>
                     ))}
+                    <Spinner className={`h-10 w-10 mx-auto ${load}`} />
                   </div>
                   <form
                     className="bg-gray-300 p-4 flex gap-2 items-center bottom-4 relative"
                     onSubmit={onsubmit}
                   >
                     <input
-                      className="flex items-center h-10 w-full rounded px-3 text-sm"
+                      className={`flex items-center h-10 w-full rounded px-3 text-sm border-2 ${promptError}`}
                       onChange={onchange}
                       type="text"
                       name="prompt"
+                      value={chatData.prompt}
                       placeholder="Type your message…"
                     />
 

@@ -51,10 +51,10 @@ function Reg() {
       <section className="w-full flex items-center justify-center py-10 bg-blue-500">
         <Card color="transparent" shadow={false} className="bg-white p-8 w-11/12 md:w-auto">
           <Typography variant="h4" color="blue-gray">
-            Sign Up
+            Registrarse
           </Typography>
           <Typography color="gray" className="mt-1 font-normal">
-            Enter your details to register.
+            Ingresa tus datos
           </Typography>
           <form
             onSubmit={onsubmit}
