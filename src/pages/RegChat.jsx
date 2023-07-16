@@ -77,8 +77,8 @@ function RegChat() {
 
   return (
     <>
-    <section className="w-full flex items-center justify-center py-10 bg-blue-500">
-        <Card color="transparent" shadow={false} className="bg-white p-8 w-11/12 md:w-auto">
+    <section className="w-full flex items-center justify-center py-10 bg-white bg-[url(/svg/bg1.svg)] bg-no-repeat bg-cover">
+        <Card color="transparent" shadow={false} className="bg-white p-8 w-11/12 md:w-auto shadow-xl">
           <Typography variant="h4" color="blue-gray">
             Crear Chat
           </Typography>

@@ -15,10 +15,7 @@ import {
 import { TrashIcon } from "@heroicons/react/24/solid";
 import Footer from "../components/Footer";
 
-import {
-  Drawer,
-  Typography,
-} from "@material-tailwind/react";
+import { Drawer, Typography } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 function ListChat() {
@@ -29,12 +26,11 @@ function ListChat() {
   const [normas, setNormas] = useState([]);
 
   //usestate error
-  const [promptError, setPromptError] = useState("")
-  const [isoError, setIsoError] = useState("")
+  const [promptError, setPromptError] = useState("");
+  const [isoError, setIsoError] = useState("");
 
   //usestate load
-  const [load, setLoad] = useState("hidden")
-
+  const [load, setLoad] = useState("hidden");
 
   const [open, setOpen] = useState(false);
   const openDrawer = () => setOpen(true);
@@ -57,20 +53,19 @@ function ListChat() {
     e.preventDefault();
     console.log(sessionStorage.getItem("token"));
 
-
     if (!chatData.prompt) {
       setPromptError("border-red-500"); // Establecer el estado para el error de prompt
     }
     if (!chatData.iso) {
       setIsoError("border-red-500"); // Establecer el estado para el error de iso
     }
-  
+
     // Verificar si todos los campos en chatData no están vacíos
     if (chatData.prompt && chatData.id_chat && chatData.iso) {
       try {
-        setPromptError("")
-        setIsoError("")
-        setLoad("")
+        setPromptError("");
+        setIsoError("");
+        setLoad("");
         const url = "http://localhost:3000/chatgpt/";
         const config = {
           headers: {
@@ -80,7 +75,7 @@ function ListChat() {
         };
         const response = await axios.post(url, chatData, config);
         setChatData({ ...chatData, prompt: "" });
-        setLoad("hidden")
+        setLoad("hidden");
         if (response.status == 200) {
           getChats(selectedChat._id);
           setMessage([...message, response.data]);
@@ -102,9 +97,9 @@ function ListChat() {
 
   //acaba formulario reg
 
-   useEffect(() => {
-     console.log(chatData);
-   }, [chatData]);
+  useEffect(() => {
+    console.log(chatData);
+  }, [chatData]);
 
   useEffect(() => {
     getChats();
@@ -187,9 +182,9 @@ function ListChat() {
           {/* <!-- Component Start --> */}
           <div className="flex w-full h-full bg-white">
             <div className="flex flex-col flex-grow h-full p-4 overflow-auto relative">
-
-
-              <Button onClick={openDrawer} className="lg:hidden w-max">Chats</Button>
+              <Button onClick={openDrawer} className="lg:hidden w-max">
+                Chats
+              </Button>
               <Drawer open={open} onClose={closeDrawer} className="p-4">
                 <div className="mb-6 flex items-center justify-between">
                   <Typography variant="h5" color="blue-gray">
@@ -204,25 +199,26 @@ function ListChat() {
                   </IconButton>
                 </div>
                 <List>
-            {list.map((item, key) => (
-              <ListItem
-                ripple={false}
-                className="py-1 pr-1 pl-4"
-                key={key}
-                onClick={() => {handleChatClick(item);
-                closeDrawer();}}
-              >
-                {item.empresa}
-                <ListItemSuffix>
-                  <IconButton variant="text" color="blue-gray">
-                    <TrashIcon className="h-5 w-5" />
-                  </IconButton>
-                </ListItemSuffix>
-              </ListItem>
-            ))}
-          </List>
+                  {list.map((item, key) => (
+                    <ListItem
+                      ripple={false}
+                      className="py-1 pr-1 pl-4"
+                      key={key}
+                      onClick={() => {
+                        handleChatClick(item);
+                        closeDrawer();
+                      }}
+                    >
+                      {item.empresa}
+                      <ListItemSuffix>
+                        <IconButton variant="text" color="blue-gray">
+                          <TrashIcon className="h-5 w-5" />
+                        </IconButton>
+                      </ListItemSuffix>
+                    </ListItem>
+                  ))}
+                </List>
               </Drawer>
-
 
               {selectedChat ? (
                 <>
@@ -234,34 +230,56 @@ function ListChat() {
                     onChange={onchange}
                     className={`border-2 my-4 py-2 px-4 rounded-md ${isoError}`}
                   >
-                    <option className="" value={""}>Escoge una ISO</option>
+                    <option className="" value={""}>
+                      Escoge una ISO
+                    </option>
                     {normas.map((item, key) => (
                       <option key={key} value={item.iso}>
                         {item.iso}
                       </option>
                     ))}
                   </select>
-                  <div className="d-flex flex-column mb-3 containerMessages h-full overflow-y-scroll py-9">
+                  <div className="d-flex flex-column mb-3 containerMessages h-full overflow-y-scroll py-9 px-2">
                     {message.map((item, key) => (
-                      <div
-                        className="flex w-full mt-2 space-x-3 max-w-xl ml-auto justify-end"
-                        key={key}
-                      >
-                        <div>
-                          <div className="bg-blue-gray-300 text-white p-3 rounded-l-lg rounded-br-lg">
-                            <p
-                              className="text-sm"
-                              style={{ whiteSpace: "pre-line" }}
-                            >
-                              {item.response}
-                            </p>
+                      <>
+                        <div
+                          className="flex w-full mt-2 space-x-3 max-w-xl ml-auto justify-end"
+                          key={key}
+                        >
+                          <div>
+                            <div className="bg-blue-300 text-white p-3 rounded-l-lg rounded-br-lg">
+                              <p
+                                className="text-sm"
+                                style={{ whiteSpace: "pre-line" }}
+                              >
+                                {item.prompt}
+                              </p>
+                            </div>
+                            {/* <span className="text-xs text-gray-500 leading-none">
+                              2 min ago
+                            </span> */}
                           </div>
-                          <span className="text-xs text-gray-500 leading-none">
-                            2 min ago
-                          </span>
                         </div>
-                        <div className="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-                      </div>
+                        <div
+                          className="flex w-full mt-2 space-x-3 max-w-xl mr-auto justify-start"
+                          key={key}
+                        >
+                          <div>
+                            <div className="bg-blue-gray-300 mb-4 text-white p-3 rounded-r-lg rounded-bl-lg">
+                              <p
+                                className="text-sm"
+                                style={{ whiteSpace: "pre-line" }}
+                              >
+                                {item.response}
+                              </p>
+                            </div>
+
+                            {/* <span className="text-xs text-gray-500 leading-none">
+                              2 min ago
+                            </span> */}
+                          </div>
+                        </div>
+                      </>
                     ))}
                     <Spinner className={`h-10 w-10 mx-auto ${load}`} />
                   </div>

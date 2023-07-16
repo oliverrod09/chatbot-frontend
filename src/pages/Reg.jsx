@@ -48,8 +48,12 @@ function Reg() {
 
   return (
     <>
-      <section className="w-full flex items-center justify-center py-10 bg-blue-500">
-        <Card color="transparent" shadow={false} className="bg-white p-8 w-11/12 md:w-auto">
+      <section className="w-full flex items-center justify-center py-10 bg-white bg-[url(/svg/bg1.svg)] bg-no-repeat bg-cover">
+        <Card
+          color="transparent"
+          shadow={false}
+          className="bg-white p-8 w-11/12 md:w-auto shadow-xl"
+        >
           <Typography variant="h4" color="blue-gray">
             Registrarse
           </Typography>
@@ -61,30 +65,69 @@ function Reg() {
             className="mt-8 mb-2 md:w-80 max-w-screen-lg w-full"
           >
             <div className="mb-4 flex flex-col gap-6">
-              <Input
+              <div className="flex flex-col">
+                <label htmlFor="name" className="hidden">
+                  Full Name
+                </label>
+                <input
+                  name="name"
+                  value={user.name}
+                  onChange={onchange}
+                  type="text"
+                  placeholder="Username"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"
+                />
+              </div>
+              {/* <Input
                 name="name"
                 value={user.name}
                 onChange={onchange}
                 type="text"
                 size="lg"
                 label="Name"
-              />
-              <Input
+              /> */}
+              <div className="flex flex-col">
+                <label htmlFor="name" className="hidden">
+                  Username
+                </label>
+                <input
+                  name="user"
+                  value={user.user}
+                  onChange={onchange}
+                  type="text"
+                  placeholder="Username"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"
+                />
+              </div>
+              {/* <Input
                 name="user"
                 value={user.user}
                 onChange={onchange}
                 type="text"
                 size="lg"
                 label="Username"
-              />
-              <Input
+              /> */}
+              <div className="flex flex-col">
+                <label htmlFor="name" className="hidden">
+                  Password
+                </label>
+                <input
+                  name="password"
+                  value={user.password}
+                  onChange={onchange}
+                  type="password"
+                  placeholder="Password"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"
+                />
+              </div>
+              {/* <Input
                 name="password"
                 value={user.password}
                 onChange={onchange}
                 type="password"
                 size="lg"
                 label="Password"
-              />
+              /> */}
             </div>
             <Checkbox
               label={
@@ -104,7 +147,11 @@ function Reg() {
               }
               containerProps={{ className: "-ml-2.5" }}
             />
-            <input className="cursor-pointer align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full mt-6" type="submit" value="Registrar" />
+            <input
+              className="cursor-pointer align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full mt-6"
+              type="submit"
+              value="Registrar"
+            />
             <Typography color="gray" className="mt-4 text-center font-normal">
               Already have an account?{" "}
               <a

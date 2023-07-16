@@ -23,7 +23,7 @@ function Nav() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        color="white"
         className="p-1 font-normal"
       >
         <Link to={"/"} className="flex items-center">
@@ -33,7 +33,7 @@ function Nav() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        color="white"
         className="p-1 font-normal"
       >
         <Link to={"/login"} className="flex items-center">
@@ -43,7 +43,7 @@ function Nav() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        color="white"
         className="p-1 font-normal"
       >
         <Link to={"/register"} className="flex items-center">
@@ -53,7 +53,7 @@ function Nav() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        color="white"
         className="p-1 font-normal"
       >
         <Link to={"/regchat"} className="flex items-center">
@@ -63,7 +63,7 @@ function Nav() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        color="white"
         className="p-1 font-normal"
       >
         <Link to={"/listchat"} className="flex items-center">
@@ -73,7 +73,7 @@ function Nav() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        color="white"
         className="p-1 font-normal"
       >
         <Link to={"/logout"} className="flex items-center">
@@ -84,19 +84,19 @@ function Nav() {
   );
  
   return (
-    <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
+    <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 bg-blue-500">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link to={"/"}
-            className="mr-4 cursor-pointer py-1.5 font-medium"
+            className="mr-4 cursor-pointer py-1.5 text-white font-semibold"
           >
-            Material Tailwind
+            <i className='inline-block w-5 h-5 mr-2 bg-cover bg-center bg-no-repeat bg-[url(/icon.svg)]'></i>
+            CHATBOT ISOS
           </Link>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <Button
-              variant="gradient"
               size="sm"
-              className="hidden lg:inline-block"
+              className="hidden lg:inline-block bg-gradient-to-r from-blue-900 to-blue-700"
             >
               <span>Buy Now</span>
             </Button>
