@@ -77,12 +77,12 @@ function RegChat() {
 
   return (
     <>
-    <section className="w-full flex items-center justify-center py-10 bg-white bg-[url(/svg/bg1.svg)] bg-no-repeat bg-cover">
-        <Card color="transparent" shadow={false} className="bg-white p-8 w-11/12 md:w-auto shadow-xl">
-          <Typography variant="h4" color="blue-gray">
+    <section className="w-full flex items-center justify-center py-10 dark:bg-blue-gray-800 bg-white bg-[url(/svg/bg1.svg)] bg-no-repeat bg-cover">
+        <Card color="transparent" shadow={false} className="bg-white p-8 w-11/12 md:w-auto dark:bg-blue-gray-700 shadow-xl">
+          <Typography variant="h4" className="text-blue-gray-900 dark:text-white">
             Crear Chat
           </Typography>
-          <Typography color="gray" className="mt-1 font-normal">
+          <Typography className="mt-1 font-normal text-blue-gray-900 dark:text-white">
             Ingresa los datos para buscar posibles ISOS 
           </Typography>
           <form
@@ -90,21 +90,51 @@ function RegChat() {
             className="mt-8 mb-2 md:w-80 max-w-screen-lg w-full"
           >
             <div className="mb-4 flex flex-col gap-6">
-              <Input
+            <div className="flex flex-col">
+                <label htmlFor="name" className="hidden">
+                  De que es tu empresa?
+                </label>
+                <input
+                  name='empresa' value={chatData.empresa} onChange={onchange} type="text"
+                  placeholder="De que es tu empresa?"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+              {/* <Input
                 name='empresa' value={chatData.empresa} onChange={onchange} type="text"
                 size="lg"
                 label="De que es tu empresa?"
-              />
-              <Input
+              /> */}
+              <div className="flex flex-col">
+                <label htmlFor="name" className="hidden">
+                  De que es tu empresa?
+                </label>
+                <input
+                  name='cantidad_clientes' value={chatData.cantidad_clientes} onChange={onchange} type="number"
+                  placeholder="Cantidad de clientes por mes?"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+              {/* <Input
                 name='cantidad_clientes' value={chatData.cantidad_clientes} onChange={onchange} type="number"
                 size="lg"
                 label="Que cantidad de clientes recibes por mes?"
-              />
-              <Input
+              /> */}
+              <div className="flex flex-col">
+                <label htmlFor="name" className="hidden">
+                  De que es tu empresa?
+                </label>
+                <input
+                   name='ubicacion' value={chatData.ubicacion} onChange={onchange} type="text"
+                  placeholder="En que país esta tu empresa?"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+              {/* <Input
                 name='ubicacion' value={chatData.ubicacion} onChange={onchange} type="text"
                 size="lg"
                 label="En que país esta tu empresa?"
-              />
+              /> */}
             </div>
             
             <input className="cursor-pointer align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full mt-6" type="submit" value="Crear" />

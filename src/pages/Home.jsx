@@ -5,10 +5,10 @@ import Footer from "../components/Footer";
 function Home() {
   return (
     <>
-      <section className="pt-24 bg-white">
+      <section className="pt-24 bg-white dark:bg-blue-gray-800">
         <div className="px-12 mx-auto max-w-7xl">
           <div className="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">
-            <h1 className="mb-8 text-4xl font-extrabold leading-none tracking-normal text-gray-900 md:text-6xl md:tracking-tight">
+            <h1 className="mb-8 text-4xl font-extrabold leading-none tracking-normal text-gray-900 dark:text-white md:text-6xl md:tracking-tight">
               <span>Comienza</span>{" "}
               <span className="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-blue-300 to-cl_main lg:inline">
                 a utilizar nuestro chatbot
@@ -70,15 +70,15 @@ function Home() {
       </section>
 
       <section>
-        <div className="py-16">
+        <div className="py-16 dark:bg-blue-gray-800">
           <div className="container m-auto px-6 text-gray-500 md:px-12 xl:px-0">
             <div className="mx-auto grid gap-6 md:w-3/4 lg:w-full lg:grid-cols-3">
-              <div className="bg-white rounded-2xl shadow-xl px-8 py-12 sm:px-12 lg:px-8 flex flex-col justify-between">
+              <div className="bg-white dark:bg-blue-gray-600 rounded-2xl shadow-xl px-8 py-12 sm:px-12 lg:px-8 flex flex-col justify-between">
                 <div className="mb-12 space-y-4">
                   <h3 className="text-2xl font-semibold text-cl_main">
                     ISO (Organización Internacional de Normalización)
                   </h3>
-                  <p className="mb-6">
+                  <p className="mb-6 dark:text-white">
                     Las normas ISO son un conjunto de estándares internacionales
                     que abarcan diversas áreas y disciplinas. Estas normas se
                     utilizan en todo el mundo para garantizar la calidad, la
@@ -102,12 +102,12 @@ function Home() {
                   height="600"
                 />
               </div>
-              <div className="bg-white rounded-2xl shadow-xl px-8 py-12 sm:px-12 lg:px-8 flex flex-col justify-between">
+              <div className="bg-white dark:bg-blue-gray-600 rounded-2xl shadow-xl px-8 py-12 sm:px-12 lg:px-8 flex flex-col justify-between">
                 <div className="mb-12 space-y-4">
                   <h3 className="text-2xl font-semibold text-cl_main">
                     Beneficios de cumplir con las normas ISO
                   </h3>
-                  <p className="mb-6">
+                  <p className="mb-6 dark:text-white">
                     Cumplir con las normas ISO tiene numerosos beneficios para
                     las organizaciones. Estos beneficios incluyen la mejora de
                     la calidad de los productos y servicios, el aumento de la
@@ -130,12 +130,12 @@ function Home() {
                   height="600"
                 />
               </div>
-              <div className="bg-white rounded-2xl shadow-xl px-8 py-12 sm:px-12 lg:px-8 flex flex-col justify-between">
+              <div className="bg-white dark:bg-blue-gray-600 rounded-2xl shadow-xl px-8 py-12 sm:px-12 lg:px-8 flex flex-col justify-between">
                 <div className="mb-12 space-y-4">
                   <h3 className="text-2xl font-semibold text-cl_main">
                     Implementación exitosa de las normas ISO
                   </h3>
-                  <p className="mb-6">
+                  <p className="mb-6 dark:text-white">
                     La implementación exitosa de las normas ISO requiere un
                     enfoque estratégico y sistemático. Nuestro chatbot te guiará
                     a través del proceso de implementación, proporcionándote

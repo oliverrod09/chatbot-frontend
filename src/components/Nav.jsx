@@ -10,8 +10,9 @@ import {
 } from "@material-tailwind/react";
 
 import { Link } from "react-router-dom";
+import IconNav from './IconNav';
 
-function Nav() {
+function Nav({sesion}) {
     const [openNav, setOpenNav] = useState(false);
  
   useEffect(() => {
@@ -30,7 +31,7 @@ function Nav() {
           Home
         </Link>
       </Typography>
-      <Typography
+      {/* <Typography
         as="li"
         variant="small"
         color="white"
@@ -49,8 +50,8 @@ function Nav() {
         <Link to={"/register"} className="flex items-center">
           Register
         </Link>
-      </Typography>
-      <Typography
+      </Typography> */}
+      {/* <Typography
         as="li"
         variant="small"
         color="white"
@@ -79,12 +80,12 @@ function Nav() {
         <Link to={"/logout"} className="flex items-center">
           Cerrar sesion
         </Link>
-      </Typography>
+      </Typography> */}
     </ul>
   );
  
   return (
-    <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 bg-blue-500">
+    <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 bg-blue-500 dark:border-none">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link to={"/"}
             className="mr-4 cursor-pointer py-1.5 text-white font-semibold"
@@ -94,12 +95,13 @@ function Nav() {
           </Link>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
-            <Button
+            <IconNav sesion={sesion}></IconNav>
+            {/* <Button
               size="sm"
               className="hidden lg:inline-block bg-gradient-to-r from-blue-900 to-blue-700"
             >
               <span>Buy Now</span>
-            </Button>
+            </Button> */}
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

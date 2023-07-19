@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
-function Login() {
+function Login({isLogin}) {
   const valoresIniciales = {
     user: "",
     password: "",
@@ -32,9 +32,11 @@ function Login() {
       const response = await axios.post(url, user, config);
       if (response.status == 200) {
         Swal.fire("Excelente!", "Has ingresado correctamente", "success");
-        //   setRedirect(true)
         console.log(response.data.token);
         sessionStorage.setItem("token", response.data.token);
+        isLogin(true)
+        setRedirect(true)
+
       } else {
         Swal.fire("Disculpa", "Algo ha salido mal", "error");
       }
@@ -53,39 +55,65 @@ function Login() {
 
   return (
     <>
-      <section className="w-full flex items-center justify-center py-10 bg-white bg-[url(/svg/bg1.svg)] bg-no-repeat bg-cover">
+      <section className="w-full flex items-center justify-center py-10 bg-white dark:bg-blue-gray-800 bg-[url(/svg/bg1.svg)] bg-no-repeat bg-cover">
         <Card
           color="transparent"
           shadow={false}
-          className="bg-white p-8 w-11/12 md:w-auto shadow-xl"
+          className="bg-white p-8 w-11/12 md:w-auto shadow-xl dark:bg-blue-gray-700"
         >
-          <Typography variant="h4" color="blue-gray">
+          <Typography variant="h4" className="text-blue-gray-900 dark:text-white">
             Login
           </Typography>
-          <Typography color="gray" className="mt-1 font-normal">
+          <Typography className="mt-1 font-normal text-blue-gray-900 dark:text-white ">
             Ingresa tus datos
           </Typography>
           <form
             onSubmit={onsubmit}
             className="mt-8 mb-2 md:w-80 max-w-screen-lg w-full"
           >
-            <div className="mb-4 flex flex-col gap-6">
-              <Input
+            <div className="mb-4 flex flex-col gap-6 ">
+              <div className="flex flex-col">
+                <label htmlFor="name" className="hidden">
+                  Username
+                </label>
+                <input
+                  name="user"
+                  value={user.user}
+                  onChange={onchange}
+                  type="text"
+                  placeholder="Username"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+              {/* <Input
                 name="user"
                 value={user.user}
                 onChange={onchange}
                 type="text"
                 size="lg"
                 label="Username"
-              />
-              <Input
+              /> */}
+              <div className="flex flex-col">
+                <label htmlFor="name" className="hidden">
+                  Password
+                </label>
+                <input
+                  name="password"
+                  value={user.password}
+                  onChange={onchange}
+                  type="password"
+                  placeholder="Password"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+              {/* <Input
                 name="password"
                 value={user.password}
                 onChange={onchange}
                 type="password"
                 size="lg"
                 label="Password"
-              />
+              /> */}
             </div>
 
             <input
@@ -93,7 +121,7 @@ function Login() {
               type="submit"
               value="Entrar"
             />
-            <Typography color="gray" className="mt-4 text-center font-normal">
+            <Typography className="mt-4 text-center font-normal text-gray-900 dark:text-white">
               No tienes cuenta?{" "}
               <Link
                 to={"/register"}

@@ -48,16 +48,16 @@ function Reg() {
 
   return (
     <>
-      <section className="w-full flex items-center justify-center py-10 bg-white bg-[url(/svg/bg1.svg)] bg-no-repeat bg-cover">
+      <section className="w-full flex items-center justify-center py-10 dark:bg-blue-gray-800 bg-white bg-[url(/svg/bg1.svg)] bg-no-repeat bg-cover">
         <Card
           color="transparent"
           shadow={false}
-          className="bg-white p-8 w-11/12 md:w-auto shadow-xl"
+          className="bg-white p-8 w-11/12 md:w-auto shadow-xl dark:bg-blue-gray-700"
         >
-          <Typography variant="h4" color="blue-gray">
+          <Typography variant="h4" className="text-blue-gray-900 dark:text-white">
             Registrarse
           </Typography>
-          <Typography color="gray" className="mt-1 font-normal">
+          <Typography className="mt-1 font-normal text-gray-900 dark:text-white">
             Ingresa tus datos
           </Typography>
           <form
@@ -74,8 +74,8 @@ function Reg() {
                   value={user.name}
                   onChange={onchange}
                   type="text"
-                  placeholder="Username"
-                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"
+                  placeholder="Name"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white  border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-blue-500 focus:outline-none"
                 />
               </div>
               {/* <Input
@@ -96,7 +96,7 @@ function Reg() {
                   onChange={onchange}
                   type="text"
                   placeholder="Username"
-                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white  border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-blue-500 focus:outline-none"
                 />
               </div>
               {/* <Input
@@ -117,7 +117,7 @@ function Reg() {
                   onChange={onchange}
                   type="password"
                   placeholder="Password"
-                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white  border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-blue-500 focus:outline-none"
                 />
               </div>
               {/* <Input
@@ -134,7 +134,7 @@ function Reg() {
                 <Typography
                   variant="small"
                   color="gray"
-                  className="flex items-center font-normal"
+                  className="flex items-center font-normal dark:text-white"
                 >
                   I agree the
                   <a
@@ -152,7 +152,7 @@ function Reg() {
               type="submit"
               value="Registrar"
             />
-            <Typography color="gray" className="mt-4 text-center font-normal">
+            <Typography color="gray" className="mt-4 text-center font-normal dark:text-white">
               Already have an account?{" "}
               <a
                 href="#"

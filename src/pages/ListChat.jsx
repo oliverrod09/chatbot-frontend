@@ -17,8 +17,9 @@ import Footer from "../components/Footer";
 
 import { Drawer, Typography } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Link, Navigate } from "react-router-dom";
 
-function ListChat() {
+function ListChat({sesion}) {
   const [selectedChat, setSelectedChat] = useState(null);
   const [list, setList] = useState([]);
   const [message, setMessage] = useState([]);
@@ -155,32 +156,51 @@ function ListChat() {
     const obj = JSON.parse(item.response);
     setNormas(obj.normasISO);
   };
+  if (!sesion) {
+    return <Navigate to={"/noacces"}></Navigate>
+  }
 
   return (
     <>
       <section className="w-full flex">
-        <Card className="hidden lg:block overflow-hidden lg:overflow-y-scroll lg:w-1/5">
-          <List className="w-full min-w-0">
-            {list.map((item, key) => (
-              <ListItem
-                ripple={false}
-                className="py-1 pr-1 pl-4"
-                key={key}
-                onClick={() => handleChatClick(item)}
-              >
-                {item.empresa}
-                <ListItemSuffix>
-                  <IconButton variant="text" color="blue-gray">
-                    <TrashIcon className="h-5 w-5" />
-                  </IconButton>
-                </ListItemSuffix>
-              </ListItem>
-            ))}
+        <Card className="hidden lg:block overflow-hidden lg:overflow-y-scroll lg:w-1/5 dark:bg-blue-gray-800 rounded-none scrollable-content">
+          <List className="w-full min-w-0 h-full dark:text-white">
+            {list.length === 0 ? (
+              <div className="h-full flex items-center justify-center flex-col">
+                <p className="text-center font-semibold">
+                  No hay chats disponibles
+                </p>
+                <Link
+                  to={"/regchat"}
+                  className="cursor-pointer align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full mt-6"
+                >
+                  Crear Chat
+                </Link>
+              </div>
+            ) : (
+              <>
+                {list.map((item, key) => (
+                  <ListItem
+                    ripple={false}
+                    className="py-1 pr-1 pl-4"
+                    key={key}
+                    onClick={() => handleChatClick(item)}
+                  >
+                    {item.empresa}
+                    <ListItemSuffix>
+                      <IconButton variant="text" color="blue-gray">
+                        <TrashIcon className="h-5 w-5" />
+                      </IconButton>
+                    </ListItemSuffix>
+                  </ListItem>
+                ))}
+              </>
+            )}
           </List>
         </Card>
-        <div className="w-full lg:w-4/5 screen90">
+        <div className="w-full lg:w-4/5 screen90 dark:bg-blue-gray-900">
           {/* <!-- Component Start --> */}
-          <div className="flex w-full h-full bg-white">
+          <div className="flex w-full h-full">
             <div className="flex flex-col flex-grow h-full p-4 overflow-auto relative">
               <Button onClick={openDrawer} className="lg:hidden w-max">
                 Chats
@@ -188,7 +208,7 @@ function ListChat() {
               <Drawer open={open} onClose={closeDrawer} className="p-4">
                 <div className="mb-6 flex items-center justify-between">
                   <Typography variant="h5" color="blue-gray">
-                    Material Tailwind
+                    Chats
                   </Typography>
                   <IconButton
                     variant="text"
@@ -198,25 +218,41 @@ function ListChat() {
                     <XMarkIcon strokeWidth={2} className="h-5 w-5" />
                   </IconButton>
                 </div>
-                <List>
-                  {list.map((item, key) => (
-                    <ListItem
-                      ripple={false}
-                      className="py-1 pr-1 pl-4"
-                      key={key}
-                      onClick={() => {
-                        handleChatClick(item);
-                        closeDrawer();
-                      }}
-                    >
-                      {item.empresa}
-                      <ListItemSuffix>
-                        <IconButton variant="text" color="blue-gray">
-                          <TrashIcon className="h-5 w-5" />
-                        </IconButton>
-                      </ListItemSuffix>
-                    </ListItem>
-                  ))}
+                <List className="h-full">
+                  {list.length === 0 ? (
+                    <div className="h-full flex items-center justify-center flex-col">
+                      <p className="text-center font-semibold">
+                        No hay chats disponibles
+                      </p>
+                      <Link
+                        to={"/regchat"}
+                        className="cursor-pointer align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full mt-6"
+                      >
+                        Crear Chat
+                      </Link>
+                    </div>
+                  ) : (
+                    <>
+                      {list.map((item, key) => (
+                        <ListItem
+                          ripple={false}
+                          className="py-1 pr-1 pl-4"
+                          key={key}
+                          onClick={() => {
+                            handleChatClick(item);
+                            closeDrawer();
+                          }}
+                        >
+                          {item.empresa}
+                          <ListItemSuffix>
+                            <IconButton variant="text" color="blue-gray" >
+                              <TrashIcon className="h-5 w-5" />
+                            </IconButton>
+                          </ListItemSuffix>
+                        </ListItem>
+                      ))}
+                    </>
+                  )}
                 </List>
               </Drawer>
 
@@ -239,7 +275,7 @@ function ListChat() {
                       </option>
                     ))}
                   </select>
-                  <div className="d-flex flex-column mb-3 containerMessages h-full overflow-y-scroll py-9 px-2">
+                  <div className="d-flex flex-column mb-3 containerMessages h-full overflow-y-scroll py-9 px-2 scrollable-content">
                     {message.map((item, key) => (
                       <>
                         <div
@@ -284,7 +320,7 @@ function ListChat() {
                     <Spinner className={`h-10 w-10 mx-auto ${load}`} />
                   </div>
                   <form
-                    className="bg-gray-300 p-4 flex gap-2 items-center bottom-4 relative"
+                    className=" p-4 flex gap-2 items-center bottom-2 relative"
                     onSubmit={onsubmit}
                   >
                     <input
