@@ -12,7 +12,7 @@ import {
     Typography,
   } from "@material-tailwind/react";
 
-function RegChat() {
+function RegChat({sesion}) {
     const valoresIniciales = {
         empresa: "",
         cantidad_clientes: "",
@@ -70,7 +70,11 @@ function RegChat() {
     }
 
     if (redirect==true) {
-        return <Navigate to={"/"}></Navigate>
+        return <Navigate to={"/noacces"}></Navigate>
+    }
+
+    if (!sesion) {
+      return <Navigate to={"/noacces"}></Navigate>
     }
 
 

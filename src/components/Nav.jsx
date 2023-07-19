@@ -8,11 +8,13 @@ import {
   IconButton,
   Collapse,
 } from "@material-tailwind/react";
+import BtnMode from "./BtnMode";
+
 
 import { Link } from "react-router-dom";
 import IconNav from './IconNav';
 
-function Nav({sesion}) {
+function Nav({sesion, handleMode, check}) {
     const [openNav, setOpenNav] = useState(false);
  
   useEffect(() => {
@@ -31,6 +33,7 @@ function Nav({sesion}) {
           Home
         </Link>
       </Typography>
+      <BtnMode handleMode={handleMode} check={check}></BtnMode>
       {/* <Typography
         as="li"
         variant="small"

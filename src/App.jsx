@@ -12,17 +12,41 @@ import NotFound from "./pages/NotFound";
 import ListChat from "./pages/ListChat";
 
 function App() {
-  const [mode, setMode] = useState("dark")
+  const checkStorage = JSON.parse(sessionStorage.getItem("check"));
+  const [mode, setMode] = useState(sessionStorage.getItem("mode")||"")
+  const [check, setCheck] = useState(checkStorage)
   const [sesion, setSesion] = useState(false)
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
       setSesion(true)
     }
-  
+
+    // if (sessionStorage.getItem()) {
+      
+    // }
     
-  }, [])
+    
   
+  }, [])
+
+  useEffect(() => {
+    sessionStorage.setItem("mode", mode)
+    sessionStorage.setItem("check", check)
+    
+  }, [mode])
+  
+
+  function handleMode(){
+    if (check) {
+      setMode("")
+      setCheck(false)
+      
+    }else{
+      setMode("dark")
+      setCheck(true)
+    }
+  }
 
   function isLogin() {
     setSesion(true)
@@ -34,8 +58,8 @@ function App() {
   return (
     <>
       <Router>
-        <div className="dark">
-          <Nav sesion={sesion}></Nav>
+        <div className={`${mode}`}>
+          <Nav sesion={sesion} check={check} handleMode={handleMode}></Nav>
           <Routes>
             <Route path="/" element={<Home></Home>}></Route>
             <Route path="/register" element={<Reg sesion={sesion}></Reg>}></Route>
