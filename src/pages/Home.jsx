@@ -15,7 +15,7 @@ function Home() {
               </span>{" "}
               <span>para ayudar y guiar con las ISOS</span>
             </h1>
-            <p className="px-0 mb-8 text-lg text-gray-600 md:text-xl lg:px-24">
+            <p className="px-0 mb-8 text-lg text-gray-600 dark:text-gray-400  md:text-xl lg:px-24">
               Obtén asistencia personalizada sobre las ISOS con nuestro chatbot
               inteligente. Te brindará información y guía sobre los estándares y
               normas internacionales.
