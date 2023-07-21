@@ -91,10 +91,10 @@ function Nav({sesion, handleMode, check}) {
     <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 bg-blue-500 dark:border-none">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link to={"/"}
-            className="mr-4 cursor-pointer py-1.5 text-white font-semibold"
+            className="mr-4 cursor-pointer py-1.5 text-white font-semibold flex items-center"
           >
-            <i className='inline-block w-5 h-5 mr-2 bg-cover bg-center bg-no-repeat bg-[url(/icon.svg)]'></i>
-            CHATBOT ISOS
+            <i className='inline-block w-24 h-10 mr-2 bg-contain bg-center bg-no-repeat bg-[url(/ISOSIA.png)]'></i>
+            {/* CHATBOT ISOS */}
           </Link>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
@@ -146,9 +146,9 @@ function Nav({sesion, handleMode, check}) {
         </div>
         <Collapse open={openNav}>
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
+          {/* <Button variant="gradient" size="sm" fullWidth className="mb-2">
             <span>Buy Now</span>
-          </Button>
+          </Button> */}
         </Collapse>
       </Navbar>
   );

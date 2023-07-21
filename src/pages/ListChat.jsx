@@ -182,16 +182,16 @@ function ListChat({sesion}) {
                 {list.map((item, key) => (
                   <ListItem
                     ripple={false}
-                    className="py-1 pr-1 pl-4"
+                    className="py-5 pr-1 pl-4 border-2"
                     key={key}
                     onClick={() => handleChatClick(item)}
                   >
                     {item.empresa}
-                    <ListItemSuffix>
+                    {/* <ListItemSuffix>
                       <IconButton variant="text" color="blue-gray">
                         <TrashIcon className="h-5 w-5" />
                       </IconButton>
-                    </ListItemSuffix>
+                    </ListItemSuffix> */}
                   </ListItem>
                 ))}
               </>
@@ -205,9 +205,9 @@ function ListChat({sesion}) {
               <Button onClick={openDrawer} className="lg:hidden w-max">
                 Chats
               </Button>
-              <Drawer open={open} onClose={closeDrawer} className="p-4">
+              <Drawer open={open} onClose={closeDrawer} className="p-4 dark:bg-blue-gray-800 dark:text-white">
                 <div className="mb-6 flex items-center justify-between">
-                  <Typography variant="h5" color="blue-gray">
+                  <Typography variant="h5">
                     Chats
                   </Typography>
                   <IconButton
@@ -236,7 +236,7 @@ function ListChat({sesion}) {
                       {list.map((item, key) => (
                         <ListItem
                           ripple={false}
-                          className="py-1 pr-1 pl-4"
+                          className="py-5 pr-1 pl-4 border-2 dark:text-white"
                           key={key}
                           onClick={() => {
                             handleChatClick(item);
@@ -244,11 +244,11 @@ function ListChat({sesion}) {
                           }}
                         >
                           {item.empresa}
-                          <ListItemSuffix>
+                          {/* <ListItemSuffix>
                             <IconButton variant="text" color="blue-gray" >
                               <TrashIcon className="h-5 w-5" />
                             </IconButton>
-                          </ListItemSuffix>
+                          </ListItemSuffix> */}
                         </ListItem>
                       ))}
                     </>

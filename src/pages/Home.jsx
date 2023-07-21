@@ -10,7 +10,7 @@ function Home() {
           <div className="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">
             <h1 className="mb-8 text-4xl font-extrabold leading-none tracking-normal text-gray-900 dark:text-white md:text-6xl md:tracking-tight">
               <span>Comienza</span>{" "}
-              <span className="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-blue-300 to-cl_main lg:inline">
+              <span className="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r  from-pink-300 to-cl_main lg:inline">
                 a utilizar nuestro chatbot
               </span>{" "}
               <span>para ayudar y guiar con las ISOS</span>
