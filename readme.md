@@ -32,4 +32,4 @@ Asegúrate de que el backend también esté iniciado para que el chatbot pueda f
 
 
 Contacto
-Si tienes alguna pregunta o sugerencia sobre el proyecto, no dudes en contactarnos. Puedes encontrarnos en nuestra página de contacto.
+Si tienes alguna pregunta o sugerencia sobre el proyecto, no dudes en contactarnos. Puedes encontrarnos en nuestra página de contacto https://oliverrod.website/.
